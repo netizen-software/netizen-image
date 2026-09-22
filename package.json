@@ -20,7 +20,8 @@
     "test:e2e": "playwright test"
   },
   "dependencies": {
-    "exifr": "^7.1.3"
+    "exifr": "^7.1.3",
+    "lucide": "^1.47.0"
   },
   "devDependencies": {
     "@playwright/test": "^1.53.1",

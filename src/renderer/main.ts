@@ -18,7 +18,10 @@ const viewer = createViewer()
 let zoom = 1
 const toolbar = createToolbar({
   onZoomIn: () => adjustZoom('in'),
-  onZoomOut: () => adjustZoom('out')
+  onZoomOut: () => adjustZoom('out'),
+  onToggleFullscreen: () => {
+    void window.netizenImage.toggleFullscreen()
+  }
 })
 
 app.append(emptyState.element, viewer.element, toolbar.element)
@@ -42,6 +45,10 @@ window.addEventListener('keydown', (event) => {
 
   if (event.key.toLowerCase() === 'o') {
     adjustZoom('out')
+  }
+
+  if (event.key.toLowerCase() === 'f') {
+    void window.netizenImage.toggleFullscreen()
   }
 })
 
