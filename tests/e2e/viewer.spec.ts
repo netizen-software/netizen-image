@@ -31,9 +31,33 @@ test.afterAll(async () => {
 
 test('loads an image and supports its viewer controls', async () => {
   await expect(window.locator('.viewer__image')).toBeVisible()
+  await expect
+    .poll(() => electronApp.evaluate(({ Menu }) => Menu.getApplicationMenu()))
+    .toBeNull()
 
   await window.getByRole('button', { name: 'Zoom in' }).click()
   await expect(window.locator('.toolbar__zoom')).toHaveText('110%')
+  const viewer = window.locator('.viewer')
+  const bounds = await viewer.boundingBox()
+  if (!bounds) {
+    throw new Error('Viewer bounds are unavailable.')
+  }
+
+  await window.mouse.move(
+    bounds.x + bounds.width / 2,
+    bounds.y + bounds.height / 2
+  )
+  await window.mouse.down()
+  await window.mouse.move(
+    bounds.x + bounds.width / 2 + 40,
+    bounds.y + bounds.height / 2 + 24
+  )
+  await window.mouse.up()
+  await expect(window.locator('.viewer__image')).toHaveCSS(
+    'transform',
+    'matrix(1.1, 0, 0, 1.1, 40, 24)'
+  )
+
   await window.keyboard.press('O')
   await expect(window.locator('.toolbar__zoom')).toHaveText('100%')
 
