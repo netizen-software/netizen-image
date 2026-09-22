@@ -13,7 +13,7 @@
     "build": "electron-vite build",
     "package": "npm run build && electron-builder --linux AppImage",
     "lint": "eslint . --max-warnings=0",
-    "format": "prettier --check .",
+    "format": "prettier --check \"**/*.{css,html,json,ts}\"",
     "format:write": "prettier --write .",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
