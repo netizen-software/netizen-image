@@ -102,3 +102,5 @@ window.netizenImage.onImageLoaded((result) => {
     emptyState.setMessage(result.message)
   }
 })
+
+window.netizenImage.notifyRendererReady()

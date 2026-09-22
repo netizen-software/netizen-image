@@ -15,11 +15,14 @@ const SUPPORTED_EXTENSIONS = new Set([
   '.webp'
 ])
 
+export function isSupportedImagePath(filePath: string): boolean {
+  return SUPPORTED_EXTENSIONS.has(extname(filePath).toLowerCase())
+}
+
 export async function loadImage(filePath: string): Promise<ImageLoadResult> {
   const resolvedPath = resolve(filePath)
-  const extension = extname(resolvedPath).toLowerCase()
 
-  if (!SUPPORTED_EXTENSIONS.has(extension)) {
+  if (!isSupportedImagePath(resolvedPath)) {
     return { ok: false, message: 'Choose a supported image file.' }
   }
 

@@ -3,7 +3,8 @@ export const IPC_CHANNELS = {
   loadDroppedImage: 'image:load-dropped',
   imageLoaded: 'image:loaded',
   toggleFullscreen: 'window:toggle-fullscreen',
-  getImageMetadata: 'image:get-metadata'
+  getImageMetadata: 'image:get-metadata',
+  rendererReady: 'renderer:ready'
 } as const
 
 export interface LoadedImage {
@@ -27,5 +28,6 @@ export interface NetizenImageApi {
   openImageDialog: () => Promise<ImageLoadResult>
   toggleFullscreen: () => Promise<boolean>
   getImageMetadata: (filePath: string) => Promise<ImageMetadataResult>
+  notifyRendererReady: () => void
   onImageLoaded: (listener: (result: ImageLoadResult) => void) => () => void
 }

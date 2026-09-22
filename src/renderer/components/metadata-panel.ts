@@ -41,6 +41,11 @@ export function createMetadataPanel(): MetadataPanel {
   element
     .querySelector<HTMLButtonElement>('[aria-label="Copy metadata"]')
     ?.addEventListener('click', () => {
+      if (!navigator.clipboard) {
+        setStatus('Metadata could not be copied.')
+        return
+      }
+
       void navigator.clipboard.writeText(copyText).then(
         () => setStatus('Metadata copied.'),
         () => setStatus('Metadata could not be copied.')
