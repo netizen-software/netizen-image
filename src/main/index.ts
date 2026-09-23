@@ -2,6 +2,7 @@ import { app, BrowserWindow } from 'electron'
 import { existsSync } from 'node:fs'
 import { loadImage } from './file-loader'
 import { registerImageIpc, sendImageResult } from './ipc/dialog'
+import { registerWindowIpc } from './ipc/window'
 import { createMainWindow } from './window'
 
 let mainWindow: BrowserWindow | undefined
@@ -18,6 +19,7 @@ if (!hasSingleInstanceLock) {
 
   app.whenReady().then(() => {
     registerImageIpc()
+    registerWindowIpc()
     mainWindow = createMainWindow()
     mainWindow.webContents.once('did-finish-load', () => {
       void loadLaunchImage(process.argv)
