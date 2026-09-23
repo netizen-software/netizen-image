@@ -1,4 +1,4 @@
-import { createIcons, Maximize, Minus, Plus } from 'lucide'
+import { createIcons, Info, Maximize, Minus, Plus } from 'lucide'
 
 export interface Toolbar {
   element: HTMLElement
@@ -9,6 +9,7 @@ interface ToolbarHandlers {
   onZoomIn: () => void
   onZoomOut: () => void
   onToggleFullscreen: () => void
+  onToggleMetadata: () => void
 }
 
 export function createToolbar(handlers: ToolbarHandlers): Toolbar {
@@ -22,9 +23,10 @@ export function createToolbar(handlers: ToolbarHandlers): Toolbar {
       <button class="icon-button" type="button" aria-label="Zoom in" title="Zoom in (I)"><i data-lucide="plus"></i></button>
     </div>
     <button class="icon-button toolbar__fullscreen" type="button" aria-label="Toggle fullscreen" title="Toggle fullscreen (F)"><i data-lucide="maximize"></i></button>
+    <button class="icon-button toolbar__metadata" type="button" aria-label="Toggle metadata" title="Toggle metadata"><i data-lucide="info"></i></button>
   `
 
-  createIcons({ icons: { Maximize, Minus, Plus }, root: element })
+  createIcons({ icons: { Info, Maximize, Minus, Plus }, root: element })
 
   element
     .querySelector<HTMLButtonElement>('[aria-label="Zoom out"]')
@@ -35,6 +37,9 @@ export function createToolbar(handlers: ToolbarHandlers): Toolbar {
   element
     .querySelector<HTMLButtonElement>('[aria-label="Toggle fullscreen"]')
     ?.addEventListener('click', handlers.onToggleFullscreen)
+  element
+    .querySelector<HTMLButtonElement>('[aria-label="Toggle metadata"]')
+    ?.addEventListener('click', handlers.onToggleMetadata)
 
   return {
     element,

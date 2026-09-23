@@ -8,6 +8,8 @@ import {
 const api: NetizenImageApi = {
   openImageDialog: () => ipcRenderer.invoke(IPC_CHANNELS.openImageDialog),
   toggleFullscreen: () => ipcRenderer.invoke(IPC_CHANNELS.toggleFullscreen),
+  getImageMetadata: (filePath) =>
+    ipcRenderer.invoke(IPC_CHANNELS.getImageMetadata, filePath),
   onImageLoaded: (listener) => {
     const handler = (
       _event: Electron.IpcRendererEvent,

@@ -2,6 +2,7 @@ import { app, BrowserWindow } from 'electron'
 import { existsSync } from 'node:fs'
 import { loadImage } from './file-loader'
 import { registerImageIpc, sendImageResult } from './ipc/dialog'
+import { registerMetadataIpc } from './ipc/metadata'
 import { registerWindowIpc } from './ipc/window'
 import { createMainWindow } from './window'
 
@@ -19,6 +20,7 @@ if (!hasSingleInstanceLock) {
 
   app.whenReady().then(() => {
     registerImageIpc()
+    registerMetadataIpc()
     registerWindowIpc()
     mainWindow = createMainWindow()
     mainWindow.webContents.once('did-finish-load', () => {
