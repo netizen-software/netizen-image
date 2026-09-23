@@ -117,6 +117,10 @@ window.addEventListener('keydown', (event) => {
   if (event.key === 'Escape') {
     void window.netizenImage.exitFullscreen()
   }
+
+  if (event.key.toLowerCase() === 'q') {
+    window.netizenImage.quitApplication()
+  }
 })
 
 window.netizenImage.onImageLoaded((result) => {

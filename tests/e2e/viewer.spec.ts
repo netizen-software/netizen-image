@@ -26,7 +26,7 @@ test.beforeAll(async () => {
 })
 
 test.afterAll(async () => {
-  await electronApp.close()
+  await electronApp.close().catch(() => undefined)
 })
 
 test('loads an image and supports its viewer controls', async () => {
@@ -108,4 +108,7 @@ test('loads an image and supports its viewer controls', async () => {
     'font-family',
     /monospace/
   )
+
+  const closed = window.waitForEvent('close')
+  await Promise.all([closed, window.keyboard.press('Q').catch(() => undefined)])
 })
