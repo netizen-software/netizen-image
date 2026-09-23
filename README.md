@@ -60,7 +60,7 @@ npm install
 npm run package
 ```
 
-The AppImage is written to `dist/Netizen Image Viewer-<version>-x86_64.AppImage`.
+The AppImage is written to `dist/Netizen-Image-Viewer-<version>-x86_64.AppImage`.
 
 ## License
 
