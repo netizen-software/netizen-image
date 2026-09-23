@@ -177,6 +177,7 @@ h1 {
 
 .metadata-panel__header h2 {
   margin: 0;
+  font-family: ui-monospace, 'Cascadia Code', 'DejaVu Sans Mono', monospace;
   font-size: 1rem;
   font-weight: 700;
 }
