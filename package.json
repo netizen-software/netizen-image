@@ -38,7 +38,7 @@
   },
   "build": {
     "appId": "io.netizen.image",
-    "productName": "Netizen Image Viewer",
+    "productName": "Netizen-Image-Viewer",
     "files": [
       "out/**",
       "package.json"
