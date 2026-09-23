@@ -12,4 +12,15 @@ export function registerWindowIpc(): void {
     window.setFullScreen(!window.isFullScreen())
     return window.isFullScreen()
   })
+
+  ipcMain.handle(IPC_CHANNELS.exitFullscreen, (event) => {
+    const window = BrowserWindow.fromWebContents(event.sender)
+
+    if (!window || !window.isFullScreen()) {
+      return false
+    }
+
+    window.setFullScreen(false)
+    return true
+  })
 }

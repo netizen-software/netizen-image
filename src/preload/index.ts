@@ -8,6 +8,7 @@ import {
 const api: NetizenImageApi = {
   openImageDialog: () => ipcRenderer.invoke(IPC_CHANNELS.openImageDialog),
   toggleFullscreen: () => ipcRenderer.invoke(IPC_CHANNELS.toggleFullscreen),
+  exitFullscreen: () => ipcRenderer.invoke(IPC_CHANNELS.exitFullscreen),
   getImageMetadata: (filePath) =>
     ipcRenderer.invoke(IPC_CHANNELS.getImageMetadata, filePath),
   notifyRendererReady: () => ipcRenderer.send(IPC_CHANNELS.rendererReady),
