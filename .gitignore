@@ -1,0 +1,9 @@
+node_modules/
+out/
+dist/
+release/
+playwright-report/
+test-results/
+.eslintcache
+*.AppImage
+*.zip
