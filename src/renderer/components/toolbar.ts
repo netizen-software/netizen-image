@@ -22,8 +22,10 @@ export function createToolbar(handlers: ToolbarHandlers): Toolbar {
       <output class="toolbar__zoom" aria-live="polite">100%</output>
       <button class="icon-button" type="button" aria-label="Zoom in" title="Zoom in (I)"><i data-lucide="plus"></i></button>
     </div>
-    <button class="icon-button toolbar__fullscreen" type="button" aria-label="Toggle fullscreen" title="Toggle fullscreen (F)"><i data-lucide="maximize"></i></button>
-    <button class="icon-button toolbar__metadata" type="button" aria-label="Toggle metadata" title="Toggle metadata"><i data-lucide="info"></i></button>
+    <div class="toolbar__actions" aria-label="Image actions">
+      <button class="icon-button" type="button" aria-label="Toggle fullscreen" title="Toggle fullscreen (F)"><i data-lucide="maximize"></i></button>
+      <button class="icon-button" type="button" aria-label="Toggle metadata" title="Toggle metadata"><i data-lucide="info"></i></button>
+    </div>
   `
 
   createIcons({ icons: { Info, Maximize, Minus, Plus }, root: element })

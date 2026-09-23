@@ -1,4 +1,4 @@
-import { app, BrowserWindow, ipcMain } from 'electron'
+import { app, BrowserWindow, ipcMain, Menu } from 'electron'
 import { existsSync } from 'node:fs'
 import { IPC_CHANNELS } from '../shared/types'
 import { isSupportedImagePath, loadImage } from './file-loader'
@@ -22,6 +22,7 @@ if (!hasSingleInstanceLock) {
   })
 
   app.whenReady().then(() => {
+    Menu.setApplicationMenu(null)
     registerImageIpc()
     registerMetadataIpc()
     registerWindowIpc()
