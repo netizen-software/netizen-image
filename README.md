@@ -27,9 +27,10 @@ A minimal dark image viewer for Linux, built with Electron and TypeScript. It ac
 
 ## Requirements
 
-- Linux (Fedora or Ubuntu)
-- Node.js `24.21.0`
-- npm
+- Fedora `>= 26` or Ubuntu `>= 17.10`
+- Node.js `24.21.0` (minimum: `22.12.0`)
+
+*Note: This project was tested on Ubuntu 24.04 LTS*
 
 ## Run In Development
 
