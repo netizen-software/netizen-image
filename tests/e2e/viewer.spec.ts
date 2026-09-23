@@ -38,6 +38,7 @@ test('loads an image and supports its viewer controls', async () => {
   await window.getByRole('button', { name: 'Zoom in' }).click()
   await expect(window.locator('.toolbar__zoom')).toHaveText('110%')
   const viewer = window.locator('.viewer')
+  await expect(viewer).toHaveCSS('overflow', 'hidden')
   const bounds = await viewer.boundingBox()
   if (!bounds) {
     throw new Error('Viewer bounds are unavailable.')
@@ -57,6 +58,11 @@ test('loads an image and supports its viewer controls', async () => {
     'transform',
     'matrix(1.1, 0, 0, 1.1, 40, 24)'
   )
+
+  await window.mouse.wheel(0, 100)
+  await expect(window.locator('.toolbar__zoom')).toHaveText('100%')
+  await window.mouse.wheel(0, -100)
+  await expect(window.locator('.toolbar__zoom')).toHaveText('110%')
 
   await window.keyboard.press('O')
   await expect(window.locator('.toolbar__zoom')).toHaveText('100%')

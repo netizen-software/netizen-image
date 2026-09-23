@@ -50,6 +50,18 @@ function adjustZoom(direction: ZoomDirection): void {
   toolbar.setZoomLabel(zoom)
 }
 
+viewer.element.addEventListener(
+  'wheel',
+  (event) => {
+    event.preventDefault()
+
+    if (event.deltaY !== 0) {
+      adjustZoom(event.deltaY < 0 ? 'in' : 'out')
+    }
+  },
+  { passive: false }
+)
+
 async function toggleMetadata(): Promise<void> {
   if (!metadataPanel.toggle()) {
     return

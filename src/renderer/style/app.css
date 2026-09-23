@@ -14,6 +14,7 @@ body,
   min-height: 100%;
   height: 100%;
   margin: 0;
+  overflow: hidden;
 }
 
 body {
@@ -32,10 +33,7 @@ body {
   place-items: center;
   padding: 2rem;
   font-family: ui-monospace, 'Cascadia Code', 'DejaVu Sans Mono', monospace;
-  background-image:
-    linear-gradient(135deg, rgba(119, 216, 181, 0.04) 25%, transparent 25%),
-    linear-gradient(225deg, rgba(119, 216, 181, 0.04) 25%, transparent 25%);
-  background-size: 28px 28px;
+  background: var(--surface);
 }
 
 .empty-state__content {
