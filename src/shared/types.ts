@@ -1,0 +1,19 @@
+export const IPC_CHANNELS = {
+  openImageDialog: 'image:open-dialog',
+  loadDroppedImage: 'image:load-dropped',
+  imageLoaded: 'image:loaded'
+} as const
+
+export interface LoadedImage {
+  fileName: string
+  filePath: string
+  sourceUrl: string
+}
+
+export type ImageLoadResult =
+  { ok: true; image: LoadedImage } | { ok: false; message: string }
+
+export interface NetizenImageApi {
+  openImageDialog: () => Promise<ImageLoadResult>
+  onImageLoaded: (listener: (result: ImageLoadResult) => void) => () => void
+}
