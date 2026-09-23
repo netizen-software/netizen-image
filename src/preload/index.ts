@@ -10,6 +10,7 @@ const api: NetizenImageApi = {
   toggleFullscreen: () => ipcRenderer.invoke(IPC_CHANNELS.toggleFullscreen),
   getImageMetadata: (filePath) =>
     ipcRenderer.invoke(IPC_CHANNELS.getImageMetadata, filePath),
+  notifyRendererReady: () => ipcRenderer.send(IPC_CHANNELS.rendererReady),
   onImageLoaded: (listener) => {
     const handler = (
       _event: Electron.IpcRendererEvent,
