@@ -2,9 +2,14 @@ import type { LoadedImage } from '../../shared/types'
 
 export interface Viewer {
   element: HTMLElement
+  pan: (direction: PanDirection) => void
   showImage: (image: LoadedImage) => void
   setZoom: (zoom: number) => void
 }
+
+export type PanDirection = 'down' | 'left' | 'right' | 'up'
+
+const PAN_STEP = 10
 
 export function createViewer(): Viewer {
   const element = document.createElement('section')
@@ -71,6 +76,18 @@ export function createViewer(): Viewer {
 
   return {
     element,
+    pan: (direction) => {
+      if (direction === 'left') {
+        translateX -= PAN_STEP
+      } else if (direction === 'right') {
+        translateX += PAN_STEP
+      } else if (direction === 'up') {
+        translateY -= PAN_STEP
+      } else {
+        translateY += PAN_STEP
+      }
+      updateTransform()
+    },
     showImage: (loadedImage) => {
       image.src = loadedImage.sourceUrl
       image.alt = loadedImage.fileName

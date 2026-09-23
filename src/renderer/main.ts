@@ -1,7 +1,7 @@
 import { createEmptyState } from './components/empty-state'
 import { createMetadataPanel } from './components/metadata-panel'
 import { createToolbar } from './components/toolbar'
-import { createViewer } from './components/viewer'
+import { createViewer, type PanDirection } from './components/viewer'
 import { clampZoom, type ZoomDirection } from './lib/zoom'
 import type { LoadedImage } from '../shared/types'
 import './style/theme.css'
@@ -88,6 +88,20 @@ async function toggleMetadata(): Promise<void> {
 }
 
 window.addEventListener('keydown', (event) => {
+  const panDirection: Record<string, PanDirection> = {
+    ArrowDown: 'down',
+    ArrowLeft: 'left',
+    ArrowRight: 'right',
+    ArrowUp: 'up'
+  }
+
+  const direction = panDirection[event.key]
+  if (direction) {
+    event.preventDefault()
+    viewer.pan(direction)
+    return
+  }
+
   if (event.key.toLowerCase() === 'i') {
     adjustZoom('in')
   }
@@ -98,6 +112,10 @@ window.addEventListener('keydown', (event) => {
 
   if (event.key.toLowerCase() === 'f') {
     void window.netizenImage.toggleFullscreen()
+  }
+
+  if (event.key === 'Escape') {
+    void window.netizenImage.exitFullscreen()
   }
 })
 

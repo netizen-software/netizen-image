@@ -67,6 +67,13 @@ test('loads an image and supports its viewer controls', async () => {
   await window.keyboard.press('O')
   await expect(window.locator('.toolbar__zoom')).toHaveText('100%')
 
+  await window.keyboard.press('ArrowLeft')
+  await window.keyboard.press('ArrowUp')
+  await expect(window.locator('.viewer__image')).toHaveCSS(
+    'transform',
+    'matrix(1, 0, 0, 1, 30, 14)'
+  )
+
   await window.keyboard.press('F')
   await expect
     .poll(() =>
@@ -75,7 +82,7 @@ test('loads an image and supports its viewer controls', async () => {
       )
     )
     .toBe(true)
-  await window.getByRole('button', { name: 'Toggle fullscreen' }).click()
+  await window.keyboard.press('Escape')
   await expect
     .poll(() =>
       electronApp.evaluate(({ BrowserWindow }) =>
@@ -84,7 +91,21 @@ test('loads an image and supports its viewer controls', async () => {
     )
     .toBe(false)
 
+  await window.getByRole('button', { name: 'Toggle fullscreen' }).click()
+  await expect
+    .poll(() =>
+      electronApp.evaluate(({ BrowserWindow }) =>
+        BrowserWindow.getAllWindows()[0].isFullScreen()
+      )
+    )
+    .toBe(true)
+  await window.getByRole('button', { name: 'Toggle fullscreen' }).click()
+
   await window.getByRole('button', { name: 'Toggle metadata' }).click()
   await expect(window.locator('.metadata-panel')).toBeVisible()
   await window.getByRole('button', { name: 'Copy metadata' }).click()
+  await expect(window.locator('.metadata-panel__status')).toHaveCSS(
+    'font-family',
+    /monospace/
+  )
 })
