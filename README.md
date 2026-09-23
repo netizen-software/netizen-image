@@ -2,6 +2,8 @@
 
 A minimal dark image viewer for Linux, built with Electron and TypeScript. It accepts an image path at launch, but is designed around a small, direct interface.
 
+<img width="607" alt="image" src="https://github.com/user-attachments/assets/985075a7-d056-45e7-8c0c-ddf147dce5b1" />
+
 ## Features
 
 - Opens images from the Browse dialog, drag and drop, or a file-path launch argument.
