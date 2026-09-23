@@ -26,6 +26,9 @@ if (!hasSingleInstanceLock) {
     registerImageIpc()
     registerMetadataIpc()
     registerWindowIpc()
+    ipcMain.on(IPC_CHANNELS.quitApplication, () => {
+      app.quit()
+    })
     ipcMain.on(IPC_CHANNELS.rendererReady, (event) => {
       if (event.sender === mainWindow?.webContents) {
         rendererIsReady = true
